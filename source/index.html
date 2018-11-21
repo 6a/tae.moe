@@ -92,13 +92,24 @@ Image belongs to MAPPA or Funimation -->
     <link rel="stylesheet" href="./cdn/css/tae.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-        function startTime() {
+        var timeOut = 0;
+
+        function startTime(first) {
             var today = new Date();
             var h = checkTime(today.getHours());
             var m = checkTime(today.getMinutes());
             var s = checkTime(today.getSeconds());
             document.getElementById('tae-clock').innerHTML = h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
+            
+            if (first) {
+                var ms = today.getMilliseconds();
+                timeOut = 1001 - ms;
+            } else {
+                timeOut = 500
+            }
+            
+
+            var t = setTimeout(startTime, timeOut);
         }
         function checkTime(i) {
             if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
@@ -109,7 +120,7 @@ Image belongs to MAPPA or Funimation -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body onload="startTime()">
+<body onload="startTime(true)">
     <div class="tae-container">
         <video src="./cdn/media/v3.mp4" autoplay muted loop poster="./cdn/media/poster.jpg">
         </video>
