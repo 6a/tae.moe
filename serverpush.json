@@ -1,0 +1,6 @@
+[
+  {
+    "get": "/*.html",
+    "push": ["/cdn/**/*.{js,css,jpg,jpeg,webp,png,mp4}"]
+  }
+]
